@@ -11,111 +11,70 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: SafeArea(
-            child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('images/me.jpg'),
-              ),
-              Container(
-                  margin: EdgeInsets.only(top: 10),
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Gabriel Espinosa',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            fontFamily: 'Pacifico'),
-                      ),
-                      Text(
-                        'Flutter Developer',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontFamily: 'LexendPeta'),
-                      )
-                    ],
-                  )),
-              Container(
-                height: 1,
-                width: 200,
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50.0,
+              backgroundImage: AssetImage('images/me.jpg'),
+            ),
+            Text(
+              'Gabriel Espinosa',
+              style: TextStyle(
+                fontFamily: 'Pacifico',
+                fontSize: 40.0,
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10, bottom: 10),
+                fontWeight: FontWeight.bold,
               ),
-              Container(
-                height: 130,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            const BorderRadius.all(const Radius.circular(10)),
-                      ),
-                      height: 50,
-                      width: 350,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                              margin: EdgeInsets.symmetric(horizontal: 20),
-                              child: Icon(
-                                Icons.phone,
-                                color: Colors.teal,
-                              )),
-                          Container(
-                              margin: EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                "+55 (22) 9 9709-1803",
-                                style: TextStyle(
-                                    color: Colors.teal,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ))
-                        ],
-                      ),
+            ),
+            Text(
+              'FLUTTER DEVELOPER',
+              style: TextStyle(
+                fontFamily: 'LexendPeta',
+                color: Colors.teal.shade100,
+                fontSize: 20.0,
+                letterSpacing: 2.5,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
+              width: 150.0,
+              child: Divider(
+                color: Colors.teal.shade100,
+              ),
+            ),
+            Card(
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    '+55 (22) 9 997091803',
+                    style: TextStyle(
+                      color: Colors.teal.shade900,
+                      fontSize: 20.0,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            const BorderRadius.all(const Radius.circular(10)),
-                      ),
-                      height: 50,
-                      width: 350,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                              margin: EdgeInsets.symmetric(horizontal: 20),
-                              child: Icon(
-                                Icons.mail,
-                                color: Colors.teal,
-                              )),
-                          Container(
-                              margin: EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                "gabrielespinosajob@gmail.com",
-                                style: TextStyle(
-                                    color: Colors.teal,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold),
-                              ))
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  ),
+                )),
+            Card(
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    'gabrielespinosajob@gmail.com',
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.teal.shade900,
+                        fontFamily: 'Source Sans Pro'),
+                  ),
+                ))
+          ],
         )),
       ),
     );
