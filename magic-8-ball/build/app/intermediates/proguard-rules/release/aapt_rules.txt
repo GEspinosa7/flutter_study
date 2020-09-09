@@ -1,0 +1,6 @@
+# Referenced at C:\Users\gabri\Desktop\Desenvolvimento\flutter_study\magic-8-ball\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:24
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+# Referenced at C:\Users\gabri\Desktop\Desenvolvimento\flutter_study\magic-8-ball\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:29
+-keep class co.appbrewery.magic8ball.MainActivity { <init>(); }
+# Referenced at C:\Users\gabri\Desktop\Desenvolvimento\flutter_study\magic-8-ball\build\app\intermediates\merged_manifests\release\arm64-v8a\AndroidManifest.xml:24
+-keep class io.flutter.app.FlutterApplication { <init>(); }
