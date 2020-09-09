@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_brain.dart';
 
-QuizzBrain qizzBrain = QuizzBrain();
+QuizzBrain quizzBrain = QuizzBrain();
 
 void main() => runApp(Quizzler());
 
@@ -29,7 +29,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  int questionNumber = 0;
   int score = 0;
 
   void showResult(icon, color) {
@@ -55,7 +54,7 @@ class _QuizPageState extends State<QuizPage> {
               padding: EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  qizzBrain.questionList[questionNumber].questionText,
+                  quizzBrain.getQuestionText(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 25.0,
@@ -81,19 +80,18 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     ),
                     onPressed: () {
-                      bool correctAnswer =
-                          qizzBrain.questionList[questionNumber].questionAnswer;
+                      bool correctAnswer = quizzBrain.getQuestionAnswer();
 
                       if (correctAnswer == true) {
                         setState(() {
                           showResult(Icons.check, Colors.green);
-                          questionNumber++;
+                          quizzBrain.nextQuestion();
                           score++;
                         });
                       } else {
                         setState(() {
                           showResult(Icons.close, Colors.red);
-                          questionNumber++;
+                          quizzBrain.nextQuestion();
                         });
                       }
                     },
@@ -113,19 +111,18 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     ),
                     onPressed: () {
-                      bool correctAnswer =
-                          qizzBrain.questionList[questionNumber].questionAnswer;
+                      bool correctAnswer = quizzBrain.getQuestionAnswer();
 
                       if (correctAnswer == false) {
                         setState(() {
                           showResult(Icons.check, Colors.green);
-                          questionNumber++;
+                          quizzBrain.nextQuestion();
                           score++;
                         });
                       } else {
                         setState(() {
                           showResult(Icons.close, Colors.red);
-                          questionNumber++;
+                          quizzBrain.nextQuestion();
                         });
                       }
                     },
