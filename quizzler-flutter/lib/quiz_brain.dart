@@ -36,6 +36,22 @@ class QuizzBrain {
     }
   }
 
+  bool isFinished() {
+    if (_questionNumber == _questionList.length - 1) {
+      print('Is finished');
+      return true;
+    } else {
+      print('not finished');
+      print(_questionNumber);
+      print(_questionList.length);
+      return false;
+    }
+  }
+
+  void resetGame() {
+    _questionNumber = 0;
+  }
+
   String getQuestionText() {
     return _questionList[_questionNumber].questionText;
   }

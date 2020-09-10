@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizzBrain quizzBrain = QuizzBrain();
 
@@ -11,6 +12,14 @@ class Quizzler extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
+        appBar: AppBar(
+          title: Text(
+            'Quizzler',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.grey.shade900,
+        ),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -30,15 +39,134 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
   int score = 0;
+  int newScore = 0;
 
-  void showResult(icon, color) {
+  void showIcon(icon, color) {
     scoreKeeper.add(
       Icon(
         icon,
         color: color,
-        size: 90,
       ),
     );
+  }
+
+  finishAlert(context, int score) {
+    var alertStyle = AlertStyle(
+        animationType: AnimationType.shrink,
+        isCloseButton: false,
+        isOverlayTapDismiss: false,
+        descStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        animationDuration: Duration(milliseconds: 400),
+        alertBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: Colors.green,
+          ),
+        ),
+        titleStyle: TextStyle(
+          color: Colors.green,
+        ),
+        backgroundColor: Colors.grey.shade900,
+        constraints: BoxConstraints.expand(width: 600));
+
+    Alert(
+      context: context,
+      style: alertStyle,
+      type: AlertType.success,
+      title: 'You\'ve finished the game',
+      buttons: [
+        DialogButton(
+          child: Text(
+            "RESTART",
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          onPressed: () {
+            setState(() {
+              quizzBrain.resetGame();
+              score = 0;
+            });
+            Navigator.pop(context);
+          },
+          color: Color.fromRGBO(0, 179, 134, 1.0),
+          radius: BorderRadius.circular(70),
+        ),
+      ],
+    ).show();
+  }
+
+  resetAlert(context, int score) {
+    var alertStyle = AlertStyle(
+        animationType: AnimationType.shrink,
+        isCloseButton: false,
+        isOverlayTapDismiss: false,
+        descStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        animationDuration: Duration(milliseconds: 400),
+        alertBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: Colors.green,
+          ),
+        ),
+        titleStyle: TextStyle(
+          color: Colors.green,
+        ),
+        backgroundColor: Colors.grey.shade900,
+        constraints: BoxConstraints.expand(width: 600));
+
+    Alert(
+      context: context,
+      style: alertStyle,
+      type: AlertType.info,
+      title: "Are you sure do you want to restart the game?",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Yes",
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+            setState(() {
+              quizzBrain.resetGame();
+              scoreKeeper = [];
+            });
+          },
+          color: Color.fromRGBO(0, 179, 134, 1.0),
+          radius: BorderRadius.circular(70),
+        ),
+        DialogButton(
+          child: Text(
+            "No",
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Colors.red,
+          radius: BorderRadius.circular(70),
+        ),
+      ],
+    ).show();
+  }
+
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = quizzBrain.getQuestionAnswer();
+    setState(() {
+      if (quizzBrain.isFinished() == true) {
+        finishAlert(context, score);
+        scoreKeeper = [];
+      } else {
+        if (userPickedAnswer == correctAnswer) {
+          showIcon(Icons.check, Colors.green);
+        } else {
+          showIcon(Icons.close, Colors.red);
+        }
+      }
+      quizzBrain.nextQuestion();
+    });
   }
 
   @override
@@ -48,6 +176,15 @@ class _QuizPageState extends State<QuizPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.refresh,
+                size: 50,
+                color: Colors.green,
+              ),
+              onPressed: () {
+                resetAlert(context, score);
+              }),
           Expanded(
             flex: 5,
             child: Padding(
@@ -71,7 +208,7 @@ class _QuizPageState extends State<QuizPage> {
                   padding: EdgeInsets.all(15.0),
                   child: FlatButton(
                     textColor: Colors.white,
-                    color: Colors.green,
+                    color: Color.fromRGBO(0, 179, 134, 1.0),
                     child: Text(
                       'True',
                       style: TextStyle(
@@ -80,20 +217,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     ),
                     onPressed: () {
-                      bool correctAnswer = quizzBrain.getQuestionAnswer();
-
-                      if (correctAnswer == true) {
-                        setState(() {
-                          showResult(Icons.check, Colors.green);
-                          quizzBrain.nextQuestion();
-                          score++;
-                        });
-                      } else {
-                        setState(() {
-                          showResult(Icons.close, Colors.red);
-                          quizzBrain.nextQuestion();
-                        });
-                      }
+                      checkAnswer(true);
                     },
                   ),
                 ),
@@ -111,20 +235,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     ),
                     onPressed: () {
-                      bool correctAnswer = quizzBrain.getQuestionAnswer();
-
-                      if (correctAnswer == false) {
-                        setState(() {
-                          showResult(Icons.check, Colors.green);
-                          quizzBrain.nextQuestion();
-                          score++;
-                        });
-                      } else {
-                        setState(() {
-                          showResult(Icons.close, Colors.red);
-                          quizzBrain.nextQuestion();
-                        });
-                      }
+                      checkAnswer(false);
                     },
                   ),
                 ),
@@ -133,23 +244,10 @@ class _QuizPageState extends State<QuizPage> {
           ),
 
           //SCOREKEEPER
-          Container(
-            height: 200,
-            width: double.infinity,
-            child: Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: scoreKeeper,
-              ),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.only(bottom: 20),
-            child: Text(
-              'Your Score: ' + score.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 30),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: scoreKeeper,
             ),
           ),
         ],
