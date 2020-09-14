@@ -14,6 +14,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 150;
+  int weight = 40;
+  int age = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +112,7 @@ class _InputPageState extends State<InputPage> {
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       inactiveTrackColor: Color(0xFF8D8E98),
-                      activeTrackColor: Colors.white,
+                      activeTrackColor: Color(0xFFEB1555),
                       thumbColor: Color(0xFFEB1555),
                       overlayColor: Color(0x29EB1555),
                       thumbShape:
@@ -139,11 +141,127 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: BMICard(
                     colour: kactiveBgCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Weight',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kHeightTextStyle,
+                        ),
+                        weight == 0
+                            ? IconButton(
+                                padding: EdgeInsets.all(0),
+                                icon: Icon(
+                                  FontAwesomeIcons.plusCircle,
+                                  size: 50,
+                                  color: kbottomContainerBgColor,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                              )
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    icon: Icon(
+                                      FontAwesomeIcons.minusCircle,
+                                      size: 50,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        weight--;
+                                      });
+                                    },
+                                  ),
+                                  IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    icon: Icon(
+                                      FontAwesomeIcons.plusCircle,
+                                      size: 50,
+                                      color: kbottomContainerBgColor,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        weight++;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: BMICard(
                     colour: kactiveBgCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Age',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kHeightTextStyle,
+                        ),
+                        age == 0
+                            ? IconButton(
+                                padding: EdgeInsets.all(0),
+                                icon: Icon(
+                                  FontAwesomeIcons.plusCircle,
+                                  size: 50,
+                                  color: kbottomContainerBgColor,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              )
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    icon: Icon(
+                                      FontAwesomeIcons.minusCircle,
+                                      size: 50,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        age--;
+                                      });
+                                    },
+                                  ),
+                                  IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    icon: Icon(
+                                      FontAwesomeIcons.plusCircle,
+                                      size: 50,
+                                      color: kbottomContainerBgColor,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        age++;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -151,7 +269,7 @@ class _InputPageState extends State<InputPage> {
           ),
           FlatButton(
             padding: EdgeInsets.all(0),
-            onPressed: () => print('teste'),
+            onPressed: () => test(),
             child: Container(
               color: kbottomContainerBgColor,
               width: double.infinity,
@@ -174,5 +292,16 @@ class _InputPageState extends State<InputPage> {
         ],
       ),
     );
+  }
+
+  void test() {
+    print('gender');
+    print(selectedGender);
+    print('age');
+    print(age);
+    print('weight');
+    print(weight);
+    print('height');
+    print(height);
   }
 }
