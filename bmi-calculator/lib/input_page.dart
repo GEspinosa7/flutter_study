@@ -39,50 +39,46 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: BMICard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
                       });
                     },
-                    child: BMICard(
-                      colour: selectedGender == Gender.male
-                          ? activeBgCardColor
-                          : inactiveBgCardColor,
-                      cardChild: BMICardItens(
-                        icon: FontAwesomeIcons.mars,
-                        iconColor: selectedGender == Gender.male
-                            ? activeItemCardColor
-                            : inactiveItemCardColor,
-                        text: 'Male',
-                        textColor: selectedGender == Gender.male
-                            ? activeItemCardColor
-                            : inactiveItemCardColor,
-                      ),
+                    colour: selectedGender == Gender.male
+                        ? activeBgCardColor
+                        : inactiveBgCardColor,
+                    cardChild: BMICardItens(
+                      icon: FontAwesomeIcons.mars,
+                      iconColor: selectedGender == Gender.male
+                          ? activeItemCardColor
+                          : inactiveItemCardColor,
+                      text: 'Male',
+                      textColor: selectedGender == Gender.male
+                          ? activeItemCardColor
+                          : inactiveItemCardColor,
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: BMICard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: BMICard(
-                      colour: selectedGender == Gender.female
-                          ? activeBgCardColor
-                          : inactiveBgCardColor,
-                      cardChild: BMICardItens(
-                        icon: FontAwesomeIcons.venus,
-                        iconColor: selectedGender == Gender.female
-                            ? activeItemCardColor
-                            : inactiveItemCardColor,
-                        text: 'Female',
-                        textColor: selectedGender == Gender.female
-                            ? activeItemCardColor
-                            : inactiveItemCardColor,
-                      ),
+                    colour: selectedGender == Gender.female
+                        ? activeBgCardColor
+                        : inactiveBgCardColor,
+                    cardChild: BMICardItens(
+                      icon: FontAwesomeIcons.venus,
+                      iconColor: selectedGender == Gender.female
+                          ? activeItemCardColor
+                          : inactiveItemCardColor,
+                      text: 'Female',
+                      textColor: selectedGender == Gender.female
+                          ? activeItemCardColor
+                          : inactiveItemCardColor,
                     ),
                   ),
                 ),
