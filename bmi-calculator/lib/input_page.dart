@@ -18,35 +18,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleBgCardColor = inactiveBgCardColor;
-  Color maleItemCardColor = inactiveItemCardColor;
-  Color femaleBgCardColor = inactiveBgCardColor;
-  Color femaleItemCardColor = inactiveItemCardColor;
-
-  void updateColor(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleBgCardColor == inactiveBgCardColor) {
-        maleBgCardColor = activeBgCardColor;
-        maleItemCardColor = activeItemCardColor;
-        femaleBgCardColor = inactiveBgCardColor;
-        femaleItemCardColor = inactiveItemCardColor;
-      } else {
-        maleBgCardColor = inactiveBgCardColor;
-        maleItemCardColor = inactiveItemCardColor;
-      }
-    }
-    if (gender == Gender.female) {
-      if (femaleBgCardColor == inactiveBgCardColor) {
-        femaleBgCardColor = activeBgCardColor;
-        femaleItemCardColor = activeItemCardColor;
-        maleBgCardColor = inactiveBgCardColor;
-        maleItemCardColor = inactiveItemCardColor;
-      } else {
-        femaleBgCardColor = inactiveBgCardColor;
-        femaleItemCardColor = inactiveItemCardColor;
-      }
-    }
-  }
+  Gender selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -70,16 +42,22 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(Gender.male);
+                        selectedGender = Gender.male;
                       });
                     },
                     child: BMICard(
-                      colour: maleBgCardColor,
+                      colour: selectedGender == Gender.male
+                          ? activeBgCardColor
+                          : inactiveBgCardColor,
                       cardChild: BMICardItens(
                         icon: FontAwesomeIcons.mars,
-                        iconColor: maleItemCardColor,
+                        iconColor: selectedGender == Gender.male
+                            ? activeItemCardColor
+                            : inactiveItemCardColor,
                         text: 'Male',
-                        textColor: maleItemCardColor,
+                        textColor: selectedGender == Gender.male
+                            ? activeItemCardColor
+                            : inactiveItemCardColor,
                       ),
                     ),
                   ),
@@ -88,16 +66,22 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(Gender.female);
+                        selectedGender = Gender.female;
                       });
                     },
                     child: BMICard(
-                      colour: femaleBgCardColor,
+                      colour: selectedGender == Gender.female
+                          ? activeBgCardColor
+                          : inactiveBgCardColor,
                       cardChild: BMICardItens(
                         icon: FontAwesomeIcons.venus,
-                        iconColor: femaleItemCardColor,
+                        iconColor: selectedGender == Gender.female
+                            ? activeItemCardColor
+                            : inactiveItemCardColor,
                         text: 'Female',
-                        textColor: femaleItemCardColor,
+                        textColor: selectedGender == Gender.female
+                            ? activeItemCardColor
+                            : inactiveItemCardColor,
                       ),
                     ),
                   ),
