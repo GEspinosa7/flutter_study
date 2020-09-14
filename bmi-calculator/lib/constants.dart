@@ -8,7 +8,7 @@ const Color kinactiveBgCardColor = Color(0xFF111328);
 const Color kactiveBgCardColor = Color(0xFF1D1E33);
 
 const kLabelTextStyle = TextStyle(
-  fontSize: 25,
+  fontSize: 22,
   color: Color(0xFF8D8E98),
   fontFamily: 'Pacifico',
 );

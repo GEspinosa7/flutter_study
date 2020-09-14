@@ -148,9 +148,20 @@ class _InputPageState extends State<InputPage> {
                           'Weight',
                           style: kLabelTextStyle,
                         ),
-                        Text(
-                          weight.toString(),
-                          style: kHeightTextStyle,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              weight.toString(),
+                              style: kHeightTextStyle,
+                            ),
+                            Text(
+                              'Kg',
+                              style: kLabelTextStyle,
+                            ),
+                          ],
                         ),
                         weight == 0
                             ? IconButton(
@@ -211,9 +222,20 @@ class _InputPageState extends State<InputPage> {
                           'Age',
                           style: kLabelTextStyle,
                         ),
-                        Text(
-                          age.toString(),
-                          style: kHeightTextStyle,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              age.toString(),
+                              style: kHeightTextStyle,
+                            ),
+                            Text(
+                              'yo',
+                              style: kLabelTextStyle,
+                            ),
+                          ],
                         ),
                         age == 0
                             ? IconButton(
@@ -267,24 +289,27 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          FlatButton(
-            padding: EdgeInsets.all(0),
-            onPressed: () => test(),
-            child: Container(
-              color: kbottomContainerBgColor,
-              width: double.infinity,
-              height: kbottomContainerHeight,
-              margin: EdgeInsets.only(top: 10.0),
-              child: Center(
-                child: Text(
-                  'Calculate',
-                  style: TextStyle(
-                    color: kactiveBgCardColor,
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Pacifico',
+          Visibility(
+            visible: buttonShouldBeVisible(),
+            child: FlatButton(
+              padding: EdgeInsets.all(0),
+              onPressed: () => test(),
+              child: Container(
+                color: kbottomContainerBgColor,
+                width: double.infinity,
+                height: kbottomContainerHeight,
+                margin: EdgeInsets.only(top: 10.0),
+                child: Center(
+                  child: Text(
+                    'Calculate',
+                    style: TextStyle(
+                      color: kactiveBgCardColor,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Pacifico',
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
             ),
@@ -295,7 +320,6 @@ class _InputPageState extends State<InputPage> {
   }
 
   void test() {
-    print('gender');
     print(selectedGender);
     print('age');
     print(age);
@@ -303,5 +327,13 @@ class _InputPageState extends State<InputPage> {
     print(weight);
     print('height');
     print(height);
+  }
+
+  bool buttonShouldBeVisible() {
+    if (selectedGender == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
