@@ -1,14 +1,8 @@
 import 'package:bmi_calculator/bmi_card.dart';
 import 'package:bmi_calculator/bmi_card_itens.dart';
+import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const bottomContainerHeight = 80.0;
-const Color bottomContainerBgColor = Color(0xFFEB1555);
-const Color inactiveItemCardColor = Color(0xFF8D8E98);
-const Color activeItemCardColor = Colors.white;
-const Color inactiveBgCardColor = Color(0xFF111328);
-const Color activeBgCardColor = Color(0xFF1D1E33);
 
 enum Gender { male, female }
 
@@ -19,6 +13,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int height = 150;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +29,7 @@ class _InputPageState extends State<InputPage> {
         centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -46,17 +42,17 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     colour: selectedGender == Gender.male
-                        ? activeBgCardColor
-                        : inactiveBgCardColor,
+                        ? kactiveBgCardColor
+                        : kinactiveBgCardColor,
                     cardChild: BMICardItens(
                       icon: FontAwesomeIcons.mars,
                       iconColor: selectedGender == Gender.male
-                          ? activeItemCardColor
-                          : inactiveItemCardColor,
+                          ? kactiveItemCardColor
+                          : kinactiveItemCardColor,
                       text: 'Male',
                       textColor: selectedGender == Gender.male
-                          ? activeItemCardColor
-                          : inactiveItemCardColor,
+                          ? kactiveItemCardColor
+                          : kinactiveItemCardColor,
                     ),
                   ),
                 ),
@@ -68,17 +64,17 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     colour: selectedGender == Gender.female
-                        ? activeBgCardColor
-                        : inactiveBgCardColor,
+                        ? kactiveBgCardColor
+                        : kinactiveBgCardColor,
                     cardChild: BMICardItens(
                       icon: FontAwesomeIcons.venus,
                       iconColor: selectedGender == Gender.female
-                          ? activeItemCardColor
-                          : inactiveItemCardColor,
+                          ? kactiveItemCardColor
+                          : kinactiveItemCardColor,
                       text: 'Female',
                       textColor: selectedGender == Gender.female
-                          ? activeItemCardColor
-                          : inactiveItemCardColor,
+                          ? kactiveItemCardColor
+                          : kinactiveItemCardColor,
                     ),
                   ),
                 ),
@@ -87,7 +83,44 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: BMICard(
-              colour: activeBgCardColor,
+              colour: kactiveBgCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Height',
+                    textAlign: TextAlign.center,
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kHeightTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      )
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.round();
+                      });
+                    },
+                    min: 120.0,
+                    max: 220.0,
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8D8E98),
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -95,12 +128,12 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: BMICard(
-                    colour: activeBgCardColor,
+                    colour: kactiveBgCardColor,
                   ),
                 ),
                 Expanded(
                   child: BMICard(
-                    colour: activeBgCardColor,
+                    colour: kactiveBgCardColor,
                   ),
                 ),
               ],
@@ -110,15 +143,15 @@ class _InputPageState extends State<InputPage> {
             padding: EdgeInsets.all(0),
             onPressed: () => print('teste'),
             child: Container(
-              color: bottomContainerBgColor,
+              color: kbottomContainerBgColor,
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kbottomContainerHeight,
               margin: EdgeInsets.only(top: 10.0),
               child: Center(
                 child: Text(
                   'Calculate',
                   style: TextStyle(
-                    color: activeBgCardColor,
+                    color: kactiveBgCardColor,
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Pacifico',

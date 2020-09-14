@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 
 class BMICardItens extends StatelessWidget {
@@ -28,11 +29,7 @@ class BMICardItens extends StatelessWidget {
         ),
         Text(
           text,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 25,
-            fontFamily: 'Pacifico',
-          ),
+          style: kLabelTextStyle,
         ),
       ],
     );
