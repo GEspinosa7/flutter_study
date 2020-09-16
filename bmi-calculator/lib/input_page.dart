@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/bmi_calculator_brain.dart';
 import 'package:bmi_calculator/bmi_card.dart';
 import 'package:bmi_calculator/bmi_card_itens.dart';
 import 'package:bmi_calculator/constants.dart';
@@ -272,19 +273,26 @@ class _InputPageState extends State<InputPage> {
           ),
           Visibility(
             visible: buttonShouldBeVisible(),
-            child: FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) {
-                        return ResultsPage();
-                      },
-                    ),
-                  );
-                },
-                padding: EdgeInsets.all(0),
-                child: BottomButton(text: 'Calculate')),
+            child: GestureDetector(
+              onTap: () {
+                BMICalculatorBrain bmiCalcBrain =
+                    BMICalculatorBrain(weight: weight, height: height);
+
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) {
+                      return ResultsPage(
+                        bmiResult: bmiCalcBrain.calculateBmi(),
+                        resultText: bmiCalcBrain.getResult(),
+                        resultInterp: bmiCalcBrain.getInterpretation(),
+                      );
+                    },
+                  ),
+                );
+              },
+              child: BottomButton(text: 'Calculate'),
+            ),
           )
         ],
       ),
