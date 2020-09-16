@@ -1,6 +1,9 @@
 import 'package:bmi_calculator/bmi_card.dart';
 import 'package:bmi_calculator/bmi_card_itens.dart';
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/results_page.dart';
+import 'package:bmi_calculator/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -270,41 +273,22 @@ class _InputPageState extends State<InputPage> {
           Visibility(
             visible: buttonShouldBeVisible(),
             child: FlatButton(
-              padding: EdgeInsets.all(0),
-              onPressed: () => test(),
-              child: Container(
-                color: kbottomContainerBgColor,
-                width: double.infinity,
-                height: kbottomContainerHeight,
-                margin: EdgeInsets.only(top: 10.0),
-                child: Center(
-                  child: Text(
-                    'Calculate',
-                    style: TextStyle(
-                      color: kactiveBgCardColor,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Pacifico',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) {
+                        return ResultsPage();
+                      },
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ),
+                  );
+                },
+                padding: EdgeInsets.all(0),
+                child: BottomButton(text: 'Calculate')),
           )
         ],
       ),
     );
-  }
-
-  void test() {
-    print(selectedGender);
-    print('age');
-    print(age);
-    print('weight');
-    print(weight);
-    print('height');
-    print(height);
   }
 
   bool buttonShouldBeVisible() {
@@ -313,34 +297,5 @@ class _InputPageState extends State<InputPage> {
     } else {
       return true;
     }
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.bgcolor, @required this.onTap, @required this.icon});
-
-  final Color bgcolor;
-  final Function onTap;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: () {
-        onTap();
-      },
-      elevation: 6.0,
-      shape: CircleBorder(),
-      fillColor: bgcolor,
-      constraints: BoxConstraints.tightFor(
-        height: 56.0,
-        width: 56.0,
-      ),
-      child: Icon(
-        icon,
-        size: 50.0,
-        color: Colors.white,
-      ),
-    );
   }
 }

@@ -19,3 +19,15 @@ const kNumberTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
+
+const kBottomButtonTextStyle = TextStyle(
+  color: kactiveBgCardColor,
+  fontSize: 35,
+  fontWeight: FontWeight.bold,
+  fontFamily: 'Pacifico',
+);
+
+const kResultTextsStyle = TextStyle(
+  fontSize: 22.0,
+  color: Colors.white,
+);
