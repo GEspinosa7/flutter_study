@@ -6,6 +6,8 @@ const Color kinactiveItemCardColor = Color(0xFF8D8E98);
 const Color kactiveItemCardColor = Colors.white;
 const Color kinactiveBgCardColor = Color(0xFF111328);
 const Color kactiveBgCardColor = Color(0xFF1D1E33);
+const Color kPlusButton = Color(0xFFEB1555);
+const Color kMinusButton = Color(0xFF4C4F5E);
 
 const kLabelTextStyle = TextStyle(
   fontSize: 22,
@@ -13,7 +15,7 @@ const kLabelTextStyle = TextStyle(
   fontFamily: 'Pacifico',
 );
 
-const kHeightTextStyle = TextStyle(
+const kNumberTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );

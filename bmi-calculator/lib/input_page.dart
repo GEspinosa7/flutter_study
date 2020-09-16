@@ -101,7 +101,7 @@ class _InputPageState extends State<InputPage> {
                     children: [
                       Text(
                         height.toString(),
-                        style: kHeightTextStyle,
+                        style: kNumberTextStyle,
                       ),
                       Text(
                         'cm',
@@ -155,7 +155,7 @@ class _InputPageState extends State<InputPage> {
                           children: [
                             Text(
                               weight.toString(),
-                              style: kHeightTextStyle,
+                              style: kNumberTextStyle,
                             ),
                             Text(
                               'Kg',
@@ -164,14 +164,10 @@ class _InputPageState extends State<InputPage> {
                           ],
                         ),
                         weight == 0
-                            ? IconButton(
-                                padding: EdgeInsets.all(0),
-                                icon: Icon(
-                                  FontAwesomeIcons.plusCircle,
-                                  size: 50,
-                                  color: kbottomContainerBgColor,
-                                ),
-                                onPressed: () {
+                            ? RoundIconButton(
+                                bgcolor: kPlusButton,
+                                icon: Icons.add,
+                                onTap: () {
                                   setState(() {
                                     weight++;
                                   });
@@ -181,31 +177,24 @@ class _InputPageState extends State<InputPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  IconButton(
-                                    padding: EdgeInsets.all(0),
-                                    icon: Icon(
-                                      FontAwesomeIcons.minusCircle,
-                                      size: 50,
-                                    ),
-                                    onPressed: () {
+                                  RoundIconButton(
+                                    bgcolor: kMinusButton,
+                                    icon: Icons.remove,
+                                    onTap: () {
                                       setState(() {
                                         weight--;
                                       });
                                     },
                                   ),
-                                  IconButton(
-                                    padding: EdgeInsets.all(0),
-                                    icon: Icon(
-                                      FontAwesomeIcons.plusCircle,
-                                      size: 50,
-                                      color: kbottomContainerBgColor,
-                                    ),
-                                    onPressed: () {
+                                  RoundIconButton(
+                                    bgcolor: kPlusButton,
+                                    icon: Icons.add,
+                                    onTap: () {
                                       setState(() {
                                         weight++;
                                       });
                                     },
-                                  ),
+                                  )
                                 ],
                               )
                       ],
@@ -229,7 +218,7 @@ class _InputPageState extends State<InputPage> {
                           children: [
                             Text(
                               age.toString(),
-                              style: kHeightTextStyle,
+                              style: kNumberTextStyle,
                             ),
                             Text(
                               'yo',
@@ -238,14 +227,10 @@ class _InputPageState extends State<InputPage> {
                           ],
                         ),
                         age == 0
-                            ? IconButton(
-                                padding: EdgeInsets.all(0),
-                                icon: Icon(
-                                  FontAwesomeIcons.plusCircle,
-                                  size: 50,
-                                  color: kbottomContainerBgColor,
-                                ),
-                                onPressed: () {
+                            ? RoundIconButton(
+                                bgcolor: kPlusButton,
+                                icon: Icons.add,
+                                onTap: () {
                                   setState(() {
                                     age++;
                                   });
@@ -255,33 +240,26 @@ class _InputPageState extends State<InputPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  IconButton(
-                                    padding: EdgeInsets.all(0),
-                                    icon: Icon(
-                                      FontAwesomeIcons.minusCircle,
-                                      size: 50,
-                                    ),
-                                    onPressed: () {
+                                  RoundIconButton(
+                                    bgcolor: kMinusButton,
+                                    icon: Icons.remove,
+                                    onTap: () {
                                       setState(() {
                                         age--;
                                       });
                                     },
                                   ),
-                                  IconButton(
-                                    padding: EdgeInsets.all(0),
-                                    icon: Icon(
-                                      FontAwesomeIcons.plusCircle,
-                                      size: 50,
-                                      color: kbottomContainerBgColor,
-                                    ),
-                                    onPressed: () {
+                                  RoundIconButton(
+                                    bgcolor: kPlusButton,
+                                    icon: Icons.add,
+                                    onTap: () {
                                       setState(() {
                                         age++;
                                       });
                                     },
                                   ),
                                 ],
-                              )
+                              ),
                       ],
                     ),
                   ),
@@ -335,5 +313,34 @@ class _InputPageState extends State<InputPage> {
     } else {
       return true;
     }
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({this.bgcolor, @required this.onTap, @required this.icon});
+
+  final Color bgcolor;
+  final Function onTap;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: () {
+        onTap();
+      },
+      elevation: 6.0,
+      shape: CircleBorder(),
+      fillColor: bgcolor,
+      constraints: BoxConstraints.tightFor(
+        height: 56.0,
+        width: 56.0,
+      ),
+      child: Icon(
+        icon,
+        size: 50.0,
+        color: Colors.white,
+      ),
+    );
   }
 }
