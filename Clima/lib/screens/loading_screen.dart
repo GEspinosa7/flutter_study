@@ -1,5 +1,8 @@
+import 'package:clima/screens/location_screen.dart';
 import 'package:clima/services/networking.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../services/location.dart';
 
@@ -30,15 +33,24 @@ class _LoadingScreenState extends State<LoadingScreen> {
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
 
     var weatherData = await netHelper.getData();
+
+    Navigator.push(
+      context,
+      CupertinoPageRoute(
+        builder: (context) {
+          return LocationScreen();
+        },
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          onPressed: () {},
-          child: Text('Get Location'),
+        child: SpinKitRipple(
+          color: Colors.white,
+          size: 100.0,
         ),
       ),
     );
