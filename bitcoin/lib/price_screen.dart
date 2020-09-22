@@ -1,3 +1,4 @@
+import 'package:bitcoin_ticker/utilities/constants.dart';
 import 'package:bitcoin_ticker/widgets/crypto_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,16 @@ class _PriceScreenState extends State<PriceScreen> {
     }
 
     return DropdownButton<String>(
+      dropdownColor: kPurple,
+      style: TextStyle(
+        fontSize: 30.0,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+      icon: Icon(
+        Icons.arrow_upward,
+        size: 30.0,
+      ),
       value: selectedCurrency,
       items: dropdownItems,
       onChanged: (value) {
@@ -82,7 +93,7 @@ class _PriceScreenState extends State<PriceScreen> {
         title: Text('🤑 Coin Ticker'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Column(
@@ -92,24 +103,26 @@ class _PriceScreenState extends State<PriceScreen> {
                 cryptoCurrency: 'BTC',
                 value: isWaiting ? 'Loading' : coinValues['BTC'],
                 selectedCurrency: selectedCurrency,
+                bgColor: kRed,
               ),
               CryptoCard(
                 cryptoCurrency: 'ETH',
                 value: isWaiting ? 'Loading' : coinValues['ETH'],
                 selectedCurrency: selectedCurrency,
+                bgColor: kOrange,
               ),
               CryptoCard(
                 cryptoCurrency: 'LTC',
                 value: isWaiting ? 'Loading' : coinValues['LTC'],
                 selectedCurrency: selectedCurrency,
+                bgColor: kGrey,
               ),
             ],
           ),
           Container(
-            height: 150.0,
+            height: 100.0,
             alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
+            color: kPurple,
             child: Platform.isIOS ? iOSPicker() : androidDropdown(),
           ),
         ],

@@ -8,7 +8,7 @@ class CryptoCard extends StatelessWidget {
     this.bgColor,
   });
 
-  final String value;
+  final value;
   final String selectedCurrency;
   final String cryptoCurrency;
   final Color bgColor;
@@ -19,9 +19,9 @@ class CryptoCard extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
       child: Card(
         color: bgColor,
-        elevation: 5.0,
+        elevation: 20.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(20.0),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
