@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "487961486914",
+    "firebase_url": "https://flash-chat-bb0b6.firebaseio.com",
+    "project_id": "flash-chat-bb0b6",
+    "storage_bucket": "flash-chat-bb0b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487961486914:android:953a939a76250bd5622fdb",
+        "android_client_info": {
+          "package_name": "co.Espinosa.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487961486914-j8kl34dltd6isksj9bju6akqls74rvjq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfTyZeg7-TYkF3s72oEwKuvE9iQJWPka8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487961486914-j8kl34dltd6isksj9bju6akqls74rvjq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
