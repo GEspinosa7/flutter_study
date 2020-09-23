@@ -39,11 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   direction: FlipDirection.HORIZONTAL,
                   front: Container(
                     height: 200.0,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('images/logo2.png'),
                   ),
                   back: Container(
                     height: 200.0,
-                    child: Image.asset('images/logo2.png'),
+                    child: Image.asset('images/logo.png'),
                   ),
                 ),
               ),
