@@ -5,7 +5,7 @@ const Color kMainPurple = Color(0xFF481983);
 const Color kMainGrey = Color(0xFFE4E6EB);
 
 const kSendButtonTextStyle = TextStyle(
-  color: Colors.lightBlueAccent,
+  color: kMainPurple,
   fontWeight: FontWeight.bold,
   fontSize: 18.0,
 );
@@ -13,12 +13,17 @@ const kSendButtonTextStyle = TextStyle(
 const kMessageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   hintText: 'Type your message here...',
+  hintStyle: TextStyle(
+    color: kMainPurple,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  ),
   border: InputBorder.none,
 );
 
 const kMessageContainerDecoration = BoxDecoration(
   border: Border(
-    top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    top: BorderSide(color: kMainPurple, width: 2.0),
   ),
 );
 

@@ -21,6 +21,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     getCurrentUser();
+    messagesStream();
   }
 
   void getCurrentUser() {
@@ -35,9 +36,25 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+  void messagesStream() async {
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {
+      for (var msg in snapshot.docs) {
+        print(msg.data());
+      }
+    }
+  }
+
+  // void getMessages() async {
+  //   final messages = await _firestore.collection('messages').get();
+  // for (var msg in messages.docs) {
+  //   print(msg.data());
+  // }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kMainGrey,
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
@@ -49,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
               }),
         ],
         title: Text('⚡️Chat'),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: kMainPurple,
       ),
       body: SafeArea(
         child: Column(
@@ -58,28 +75,35 @@ class _ChatScreenState extends State<ChatScreen> {
           children: <Widget>[
             Container(
               decoration: kMessageContainerDecoration,
+              padding: EdgeInsets.symmetric(horizontal: 12),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      style: TextStyle(
+                        color: kMainPurple,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                       onChanged: (value) {
                         messageText = value;
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
-                  FlatButton(
+                  IconButton(
+                    icon: Icon(
+                      Icons.send,
+                      color: kMainPurple,
+                      size: 30,
+                    ),
                     onPressed: () {
                       _firestore.collection('messages').add({
                         'text': messageText,
                         'sender': loggedInUser.email,
                       });
                     },
-                    child: Text(
-                      'Send',
-                      style: kSendButtonTextStyle,
-                    ),
                   ),
                 ],
               ),
