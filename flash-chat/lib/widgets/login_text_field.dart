@@ -2,15 +2,22 @@ import 'package:flash_chat/utilites/constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginTextField extends StatelessWidget {
-  LoginTextField({this.hintText, @required this.onChanged, this.obscureText});
+  LoginTextField(
+      {this.hintText,
+      @required this.onChanged,
+      this.obscureText,
+      this.textType});
 
   final String hintText;
   final Function onChanged;
   final bool obscureText;
+  final TextInputType textType;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      keyboardType: textType,
+      textAlign: TextAlign.center,
       obscureText: obscureText,
       onChanged: (value) {
         onChanged(value);

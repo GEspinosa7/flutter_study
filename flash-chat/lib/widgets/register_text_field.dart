@@ -3,15 +3,21 @@ import 'package:flutter/material.dart';
 
 class RegisterTextField extends StatelessWidget {
   RegisterTextField(
-      {this.hintText, this.obscureText, @required this.onChanged});
+      {this.hintText,
+      this.obscureText,
+      @required this.onChanged,
+      this.textType});
 
   final String hintText;
   final Function onChanged;
   final bool obscureText;
+  final TextInputType textType;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      keyboardType: textType,
+      textAlign: TextAlign.center,
       onChanged: (value) {
         onChanged(value);
       },
