@@ -16,6 +16,11 @@ class LoginTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: TextStyle(
+        color: kMainPurple,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
       keyboardType: textType,
       textAlign: TextAlign.center,
       obscureText: obscureText,

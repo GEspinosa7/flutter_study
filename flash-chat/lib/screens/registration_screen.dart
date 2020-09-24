@@ -23,7 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kMainPurple,
+      backgroundColor: kMainGrey,
       body: ModalProgressHUD(
         inAsyncCall: spinner,
         child: Padding(
@@ -75,7 +75,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               FCButtons(
                 text: 'Register',
-                buttonColor: kMainGrey,
+                buttonColor: kMainPurple,
+                textColor: Colors.white,
                 onTap: () async {
                   setState(() {
                     spinner = true;
@@ -87,7 +88,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     );
 
                     if (newUser != null) {
-                      Navigator.pushNamed(context, ChatScreen.id);
+                      Navigator.pushReplacementNamed(context, ChatScreen.id);
                     }
 
                     setState(() {

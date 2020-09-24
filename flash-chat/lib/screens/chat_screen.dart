@@ -55,13 +55,22 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
+              icon: Icon(
+                Icons.exit_to_app,
+                color: Colors.red,
+              ),
               onPressed: () {
                 _auth.signOut();
                 Navigator.pushReplacementNamed(context, WelcomeScreen.id);
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: Text(
+          '⚡️Chat',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: kMainPurple,
       ),
       body: SafeArea(
@@ -174,7 +183,7 @@ class MessageBubble extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Text(
-              '$sender:',
+              isMe == true ? '' : '$sender:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
