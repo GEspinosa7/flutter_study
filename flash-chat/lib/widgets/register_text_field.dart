@@ -2,20 +2,23 @@ import 'package:flash_chat/utilites/constants.dart';
 import 'package:flutter/material.dart';
 
 class RegisterTextField extends StatelessWidget {
-  RegisterTextField(
-      {this.hintText,
-      this.obscureText,
-      @required this.onChanged,
-      this.textType});
+  RegisterTextField({
+    this.hintText,
+    this.obscureText,
+    @required this.onChanged,
+    this.textType,
+    @required this.customValidator,
+  });
 
   final String hintText;
   final Function onChanged;
+  final Function customValidator;
   final bool obscureText;
   final TextInputType textType;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       style: TextStyle(
         color: kMainPurple,
         fontSize: 20,
@@ -28,6 +31,14 @@ class RegisterTextField extends StatelessWidget {
       },
       obscureText: obscureText,
       decoration: InputDecoration(
+        errorStyle: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 2.0),
+          borderRadius: BorderRadius.all(Radius.circular(32.0)),
+        ),
         hintText: hintText,
         hintStyle: TextStyle(
             fontSize: 20, color: kMainPurple, fontWeight: FontWeight.bold),
@@ -44,6 +55,7 @@ class RegisterTextField extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(32.0)),
         ),
       ),
+      validator: customValidator,
     );
   }
 }
