@@ -52,7 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: kMainGrey,
       appBar: AppBar(
-        leading: null,
+        leading: Container(),
         actions: <Widget>[
           IconButton(
               icon: Icon(
@@ -71,6 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
         backgroundColor: kMainPurple,
       ),
       body: SafeArea(
